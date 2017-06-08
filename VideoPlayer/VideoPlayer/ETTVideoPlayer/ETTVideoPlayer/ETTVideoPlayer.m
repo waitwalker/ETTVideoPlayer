@@ -33,7 +33,6 @@ static int const kShowBarTime = 5;
     {
         [self setupSubview];
         [self addGestureRecognizer];
-        [self judgeCurrentDeviceOritation];
     }
     return self;
 }
@@ -265,7 +264,6 @@ static int const kShowBarTime = 5;
         
     } else
     { 
-        
         [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
             self.playerNavigationBar.alpha = 0.0;
             self.playerTabBar.alpha = 0.0;
@@ -317,50 +315,6 @@ static int const kShowBarTime = 5;
     }
 }
 
-#pragma mark 判断当前设备方向
-- (void)judgeCurrentDeviceOritation
-{
-    UIDevice *device = [UIDevice currentDevice];
-    UIDeviceOrientation deviceOirentation = device.orientation;
-    NSLog(@"%ld",(long)deviceOirentation);
-    
-    //生成设备旋转通知
-    [device beginGeneratingDeviceOrientationNotifications];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deviceOritationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
-#pragma mark 设备屏幕发生旋转的回调
-- (void)deviceOritationDidChange:(NSNotification *)notify
-{
-    UIDevice *device = (UIDevice *)notify.object;
-    switch (device.orientation) {
-        case UIDeviceOrientationFaceUp:
-            NSLog(@"屏幕朝上平躺");
-            break;
-        case UIDeviceOrientationFaceDown:
-            NSLog(@"屏幕朝下平躺");
-            break;
-        case UIDeviceOrientationUnknown:
-            NSLog(@"未知方向");
-            break;
-        case UIDeviceOrientationLandscapeLeft:
-            NSLog(@"屏幕向左横置,充电口向右");
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            NSLog(@"屏幕向右横置,充电口向左");
-            break;
-        case UIDeviceOrientationPortrait:
-            NSLog(@"屏幕竖直,充电口向下");
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            NSLog(@"屏幕竖直,充电口向上,上下颠倒");
-            
-        default:
-            break;
-    }
-}
-
 #pragma mark ETTVideoPlayerSliderDelegate
 - (void)beginDragSliderButton:(UIButton *)button
 {
@@ -389,7 +343,6 @@ static int const kShowBarTime = 5;
     [self.avPlayerItem removeObserver:self forKeyPath:@"status"];
     [self.avPlayerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [[UIDevice currentDevice]endGeneratingDeviceOrientationNotifications];
 }
 
 @end
