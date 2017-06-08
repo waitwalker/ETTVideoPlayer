@@ -376,6 +376,7 @@
 				CAD7DE791EE94284001A5DE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

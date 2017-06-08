@@ -25,8 +25,8 @@
     player.backgroundColor = [UIColor redColor];
     [self.view addSubview:player];
     
-    ETTVideoPlayerSlider *slider = [[ETTVideoPlayerSlider alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 50)];
-    slider.backgroundColor = [UIColor greenColor];
+    //ETTVideoPlayerSlider *slider = [[ETTVideoPlayerSlider alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 50)];
+    //slider.backgroundColor = [UIColor greenColor];
     //    //[self.view addSubview:slider];
     //    ETTVideoPlayerTabBar *playTabBar = [[ETTVideoPlayerTabBar alloc]init];
     //    playTabBar.backgroundColor = [UIColor greenColor];
