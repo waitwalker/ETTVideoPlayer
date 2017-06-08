@@ -7,10 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ETTVideoPlayer.h"
-#import "ETTVideoPlayerNavigationBarDelegate.h"
-#import "ETTVideoPlayerSlider.h"
-#import "ETTVideoPlayerTabBar.h"
+#import "ETTVideoPlayerManager.h"
 
 @interface ViewController ()
 
@@ -21,17 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ETTVideoPlayer *player = [[ETTVideoPlayer alloc]initWithFrame:CGRectMake(0, 200, self.view.bounds.size.width, 200)];
-    player.backgroundColor = [UIColor redColor];
-    [self.view addSubview:player];
+    ETTVideoPlayerManager *videoPlayerManager = [[ETTVideoPlayerManager alloc]initWithFrame:CGRectMake(0, 200, self.view.bounds.size.width, 300) superView:self.view];
     
-    //ETTVideoPlayerSlider *slider = [[ETTVideoPlayerSlider alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 50)];
-    //slider.backgroundColor = [UIColor greenColor];
-    //    //[self.view addSubview:slider];
-    //    ETTVideoPlayerTabBar *playTabBar = [[ETTVideoPlayerTabBar alloc]init];
-    //    playTabBar.backgroundColor = [UIColor greenColor];
-    //    playTabBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 200);
-    //[self.view addSubview:playTabBar];
+    videoPlayerManager.videoURLString = @"http://v1.mukewang.com/57de8272-38a2-4cae-b734-ac55ab528aa8/L.mp4";
 }
 
 

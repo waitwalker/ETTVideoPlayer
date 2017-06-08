@@ -12,8 +12,12 @@
 
 @interface ETTVideoPlayer : UIView
 
+@property (nonatomic, copy) NSString *urlString;
+
 @property (nonatomic, strong) ETTVideoPlayerNavigationBar *playerNavigationBar;
 @property (nonatomic, strong) ETTVideoPlayerTabBar        *playerTabBar;
+
+- (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString;
 
 @end
 

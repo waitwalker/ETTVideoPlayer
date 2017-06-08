@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AB370C41EE988ED005D4A32 /* ETTVideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB370C31EE988ED005D4A32 /* ETTVideoPlayerManager.m */; };
 		CAD7DE651EE94284001A5DE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD7DE641EE94284001A5DE8 /* main.m */; };
 		CAD7DE681EE94284001A5DE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD7DE671EE94284001A5DE8 /* AppDelegate.m */; };
 		CAD7DE6B1EE94284001A5DE8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD7DE6A1EE94284001A5DE8 /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AB370C21EE988ED005D4A32 /* ETTVideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETTVideoPlayerManager.h; sourceTree = "<group>"; };
+		1AB370C31EE988ED005D4A32 /* ETTVideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETTVideoPlayerManager.m; sourceTree = "<group>"; };
 		CAD7DE601EE94284001A5DE8 /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD7DE641EE94284001A5DE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAD7DE661EE94284001A5DE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				CAD7DE831EE9429B001A5DE8 /* ETTVideoPlayerNavigationBar.m */,
 				CAD7DE841EE9429B001A5DE8 /* ETTVideoPlayerTabBar.h */,
 				CAD7DE851EE9429B001A5DE8 /* ETTVideoPlayerTabBar.m */,
+				1AB370C21EE988ED005D4A32 /* ETTVideoPlayerManager.h */,
+				1AB370C31EE988ED005D4A32 /* ETTVideoPlayerManager.m */,
 			);
 			path = ETTVideoPlayer;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				CAD7DE6B1EE94284001A5DE8 /* ViewController.m in Sources */,
 				CAD7DE681EE94284001A5DE8 /* AppDelegate.m in Sources */,
 				CAD7DE8B1EE9429B001A5DE8 /* ETTVideoPlayerTabBar.m in Sources */,
+				1AB370C41EE988ED005D4A32 /* ETTVideoPlayerManager.m in Sources */,
 				CAD7DE651EE94284001A5DE8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

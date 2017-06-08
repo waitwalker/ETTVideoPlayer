@@ -27,20 +27,19 @@ static int const kShowBarTime = 5;
 #pragma mark 播放器
 @implementation ETTVideoPlayer
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString
 {
     if (self = [super initWithFrame:frame])
     {
-        [self setupSubview];
+        [self setupSubviewWithUrlString:urlString];
         [self addGestureRecognizer];
         [self judgeCurrentDeviceOritation];
     }
     return self;
 }
 
-
 #pragma makr 初始化子控件
-- (void)setupSubview
+- (void)setupSubviewWithUrlString:(NSString *)urlString
 {
     //上部navigationBar
     ETTVideoPlayerNavigationBar *playerNavigationBar = [[ETTVideoPlayerNavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 44)];
@@ -56,7 +55,7 @@ static int const kShowBarTime = 5;
     self.playerTabBar = playerTabBar;
     
     //初始化中间的播放视图
-    [self setupAVPlayer];
+    [self setupAVPlayerWithUrlString:urlString];
     
     //将navigationBar和tabBar挪到最上层
     [self bringSubviewToFront:self.playerNavigationBar];
@@ -92,10 +91,10 @@ static int const kShowBarTime = 5;
 }
 
 #pragma mark 初始AVPlayer相关
-- (void)setupAVPlayer
+- (void)setupAVPlayerWithUrlString:(NSString *)urlString
 {   
     //1.创建视频url
-    NSURL *url = [NSURL URLWithString:@"http://v1.mukewang.com/57de8272-38a2-4cae-b734-ac55ab528aa8/L.mp4"];
+    NSURL *url = [NSURL URLWithString:urlString];
     
     AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:nil];
     
