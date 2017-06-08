@@ -13,6 +13,8 @@
 
 @property (nonatomic, copy) NSString *videoURLString;
 
+@property (nonatomic, assign) CGRect frame;
+
 - (instancetype)initWithFrame:(CGRect)frame superView:(UIView *)superView;
 
 @end

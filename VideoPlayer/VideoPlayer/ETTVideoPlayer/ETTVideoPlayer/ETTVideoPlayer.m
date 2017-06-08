@@ -27,19 +27,31 @@ static int const kShowBarTime = 5;
 #pragma mark 播放器
 @implementation ETTVideoPlayer
 
-- (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
-        [self setupSubviewWithUrlString:urlString];
+        [self setupSubview];
         [self addGestureRecognizer];
         [self judgeCurrentDeviceOritation];
     }
     return self;
 }
 
+- (void)setUrlString:(NSString *)urlString
+{
+    _urlString = urlString;
+    
+    //初始化中间的播放视图
+    [self setupAVPlayerWithUrlString:urlString];
+    
+    //将navigationBar和tabBar挪到最上层
+    [self bringSubviewToFront:self.playerNavigationBar];
+    [self bringSubviewToFront:self.playerTabBar];
+}
+
 #pragma makr 初始化子控件
-- (void)setupSubviewWithUrlString:(NSString *)urlString
+- (void)setupSubview
 {
     //上部navigationBar
     ETTVideoPlayerNavigationBar *playerNavigationBar = [[ETTVideoPlayerNavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 44)];
@@ -54,12 +66,6 @@ static int const kShowBarTime = 5;
     [self addSubview:playerTabBar];
     self.playerTabBar = playerTabBar;
     
-    //初始化中间的播放视图
-    [self setupAVPlayerWithUrlString:urlString];
-    
-    //将navigationBar和tabBar挪到最上层
-    [self bringSubviewToFront:self.playerNavigationBar];
-    [self bringSubviewToFront:self.playerTabBar];
 }
 
 #pragma mark navigationBar 和 tabBar显示时间

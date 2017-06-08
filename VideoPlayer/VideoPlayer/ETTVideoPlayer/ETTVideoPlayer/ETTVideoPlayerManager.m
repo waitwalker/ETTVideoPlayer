@@ -21,7 +21,7 @@
 {
     if (self = [super init])
     {
-        _videoPlayer = [[ETTVideoPlayer alloc]initWithFrame:frame urlString:_videoURLString];
+        _videoPlayer = [[ETTVideoPlayer alloc]initWithFrame:frame];
         [superView addSubview:_videoPlayer];
     }
     return self;
@@ -32,8 +32,13 @@
     if (!_videoURLString)
     {
         _videoURLString = videoURLString;
+        _videoPlayer.urlString = videoURLString;
     }
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    _frame = frame;
+}
 
 @end
