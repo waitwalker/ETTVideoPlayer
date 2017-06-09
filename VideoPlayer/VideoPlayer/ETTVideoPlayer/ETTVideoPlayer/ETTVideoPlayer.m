@@ -302,6 +302,10 @@ static int const kShowBarTime = 5;
     if (point.x > self.frame.size.width / 2.0) 
     {
         [self adjustVolume:point.y];
+    } else
+    {
+        //调节亮度
+        
     }
 }
 
@@ -310,6 +314,12 @@ static int const kShowBarTime = 5;
 {
     self.volumeViewSlider.value -= value/ 1000;
     NSLog(@"%.3f",self.volumeViewSlider.value);
+}
+
+#pragma mark 调节亮度
+- (void)adjustBright:(CGFloat)value
+{
+    
 }
 
 #pragma mark NavigationBarDelegate
