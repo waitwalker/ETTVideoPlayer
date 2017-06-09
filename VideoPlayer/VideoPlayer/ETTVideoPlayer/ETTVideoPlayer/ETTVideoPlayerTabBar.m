@@ -17,7 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) 
-    {   self.backgroundColor = [UIColor greenColor];
+    {   self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
         [self setupSubviewsWithFrame:frame];
     }
     return self;
@@ -32,7 +32,7 @@
     CGFloat playPauseButtonY = (frame.size.height - playPauseButtonWidthHeight) / 2.0;
     
     UIButton *playPauseButton = [[UIButton alloc]initWithFrame:CGRectMake(playPauseButtonX, playPauseButtonY, playPauseButtonWidthHeight, playPauseButtonWidthHeight)];
-    [playPauseButton setBackgroundColor:[UIColor redColor]];
+    [playPauseButton setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateNormal];
     [playPauseButton addTarget:self action:@selector(tappedPlayPauseButtons:) forControlEvents:UIControlEventTouchUpInside];
     playPauseButton.selected = YES;
     [self addSubview:playPauseButton];
@@ -45,7 +45,6 @@
     CGFloat currentPlayTimeLabelY = 0;
     
     _currentPlayTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(currentPlayTimeLabelX, currentPlayTimeLabelY, currentPlayTimeLabelWidth, currentPlayTimeLabelHeight)];
-    _currentPlayTimeLabel.backgroundColor = [UIColor redColor];
     _currentPlayTimeLabel.text = @"00:23:18";
     _currentPlayTimeLabel.textColor = [UIColor whiteColor];
     _currentPlayTimeLabel.font = [UIFont systemFontOfSize:10.0];
@@ -70,7 +69,6 @@
     CGFloat totalPlayTimeLabelY = 0;
     
     _totalPlayTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(totalPlayTimeLabelX, totalPlayTimeLabelY, totalPlayTimeLabelWidth, totalPlayTimeLabelHeight)];
-    _totalPlayTimeLabel.backgroundColor = [UIColor redColor];
     _totalPlayTimeLabel.text = @"01:23:18";
     _totalPlayTimeLabel.textColor = [UIColor whiteColor];
     _totalPlayTimeLabel.font = [UIFont systemFontOfSize:10.0];
@@ -83,7 +81,7 @@
     CGFloat largeSmallButtonY = (frame.size.height - largeSmallButtonWidthHeight) / 2.0;
     
     UIButton *largeSmallButton = [[UIButton alloc]initWithFrame:CGRectMake(largeSmallButtonX, largeSmallButtonY, largeSmallButtonWidthHeight, largeSmallButtonWidthHeight)];
-    [largeSmallButton setBackgroundColor:[UIColor redColor]];
+    [largeSmallButton setImage:[UIImage imageNamed:@"player_fill"] forState:UIControlStateNormal];
     [largeSmallButton addTarget:self action:@selector(tappedlargeSmallButtons:) forControlEvents:UIControlEventTouchUpInside];
     largeSmallButton.selected = YES;
     [self addSubview:largeSmallButton];

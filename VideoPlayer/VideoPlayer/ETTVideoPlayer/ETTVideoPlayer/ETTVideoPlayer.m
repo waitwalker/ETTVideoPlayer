@@ -217,7 +217,7 @@ static int const kShowBarTime = 5;
 - (void)avPlayerEndPlay:(NSNotification *)notification
 {
     [self.avPlayerItem seekToTime:kCMTimeZero];
-    [self.playerTabBar.playPauseButton setBackgroundColor:[UIColor redColor]];
+    [self.playerTabBar.playPauseButton setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateNormal];
     [self showNavigationBarAndTabBar];
 }
 
@@ -290,11 +290,11 @@ static int const kShowBarTime = 5;
     button.selected = !button.selected;
     if (button.selected) 
     {
-        [button setBackgroundColor:[UIColor redColor]];
+        [button setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateNormal];
         [self.avPlayer pause];
     } else
     {
-        [button setBackgroundColor:[UIColor purpleColor]];
+        [button setImage:[UIImage imageNamed:@"player_pause"] forState:UIControlStateNormal];
         [self.avPlayer play];
     }
     
@@ -306,12 +306,12 @@ static int const kShowBarTime = 5;
     button.selected = !button.selected;
     if (button.selected) 
     {
-        [button setBackgroundColor:[UIColor redColor]];
+        [button setImage:[UIImage imageNamed:@"player_fill"] forState:UIControlStateNormal];
         
         
     } else
     {
-        [button setBackgroundColor:[UIColor purpleColor]];
+        [button setImage:[UIImage imageNamed:@"player_fit"] forState:UIControlStateNormal];
     }
 }
 
@@ -319,12 +319,12 @@ static int const kShowBarTime = 5;
 - (void)beginDragSliderButton:(UIButton *)button
 {
     [self.avPlayer pause];
-    [self.playerTabBar.playPauseButton setBackgroundColor:[UIColor redColor]];
+    [self.playerTabBar.playPauseButton setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateNormal];
 }
 
 - (void)draggingSliderButton:(UIButton *)button
 {   
-    [self.playerTabBar.playPauseButton setBackgroundColor:[UIColor redColor]];
+    [self.playerTabBar.playPauseButton setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateNormal];
     CGFloat value = [self.playerTabBar.slider value];
     float seekTime = CMTimeGetSeconds(self.avPlayer.currentItem.duration) * value;
     [self.avPlayer seekToTime:CMTimeMake(seekTime, 1)];
@@ -333,7 +333,7 @@ static int const kShowBarTime = 5;
 - (void)endDragSliderButton:(UIButton *)button
 {
     [self.avPlayer play];
-    [self.playerTabBar.playPauseButton setBackgroundColor:[UIColor purpleColor]];
+    [self.playerTabBar.playPauseButton setImage:[UIImage imageNamed:@"player_pause"] forState:UIControlStateNormal];
     [self setupBarShowTime];
 }
 

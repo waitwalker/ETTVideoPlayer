@@ -22,7 +22,7 @@
 {
     if (self = [super initWithFrame:frame]) 
     {   
-        self.backgroundColor = [UIColor brownColor];
+        self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
         [self setupSubviewsNavigationBar];
     }
     return self;
@@ -40,7 +40,7 @@
     //返回按钮
     UIButton *backButton = [[UIButton alloc]init];
     [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(tappedBackButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:backButton];
     self.backButton = backButton;
