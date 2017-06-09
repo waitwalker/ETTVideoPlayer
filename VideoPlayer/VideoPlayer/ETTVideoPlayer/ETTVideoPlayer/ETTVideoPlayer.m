@@ -17,6 +17,8 @@
 @property (nonatomic, strong) AVPlayer      *avPlayer;
 @property (nonatomic, strong) AVPlayerItem  *avPlayerItem;
 @property (nonatomic, strong) AVPlayerLayer *avPlayerLayer;
+@property (nonatomic, strong) UISlider      *volumeViewSlider;
+
 
 @end
 
@@ -33,6 +35,7 @@ static int const kShowBarTime = 5;
     {
         [self setupSubview];
         [self addGestureRecognizer];
+        [self setupVolume];
     }
     return self;
 }
@@ -230,6 +233,20 @@ static int const kShowBarTime = 5;
     self.playerTabBar.alpha = 1.0;
 }
 
+#pragma mark 初始化音量控件
+- (void)setupVolume
+{
+    MPVolumeView *volumeView = [[MPVolumeView alloc]init];
+    _volumeViewSlider = nil;
+    for (UIView *view in volumeView.subviews) {
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]) 
+        {
+            _volumeViewSlider = (UISlider *)view;
+            break;
+        }
+    }
+}
+
 #pragma mark 添加手势
 - (void)addGestureRecognizer
 {
@@ -240,7 +257,8 @@ static int const kShowBarTime = 5;
     [self addGestureRecognizer:tap];
     
     //调节音量
-    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
+    [self addGestureRecognizer:pan];
     
     //调节亮度
     
@@ -275,6 +293,25 @@ static int const kShowBarTime = 5;
     }
 }
 
+#pragma mark 拖动手势
+- (void)panAction:(UIPanGestureRecognizer *)pan
+{
+    CGPoint point = [pan locationInView:self];
+    
+    //调节音量
+    if (point.x > self.frame.size.width / 2.0) 
+    {
+        [self adjustVolume:point.y];
+    }
+}
+
+#pragma mark 调节音量
+- (void)adjustVolume:(CGFloat)value
+{
+    self.volumeViewSlider.value -= value/ 1000;
+    NSLog(@"%.3f",self.volumeViewSlider.value);
+}
+
 #pragma mark NavigationBarDelegate
 - (void)tappedInPlayerNavigationBar:(ETTVideoPlayerNavigationBar *)playerNavigationBar backButton:(UIButton *)button
 {   
@@ -307,8 +344,6 @@ static int const kShowBarTime = 5;
     if (button.selected) 
     {
         [button setImage:[UIImage imageNamed:@"player_fill"] forState:UIControlStateNormal];
-        
-        
     } else
     {
         [button setImage:[UIImage imageNamed:@"player_fit"] forState:UIControlStateNormal];
