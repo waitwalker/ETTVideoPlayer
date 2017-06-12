@@ -18,6 +18,8 @@
 @property (nonatomic, strong) AVPlayerItem  *avPlayerItem;
 @property (nonatomic, strong) AVPlayerLayer *avPlayerLayer;
 @property (nonatomic, strong) UISlider      *volumeViewSlider;
+@property (nonatomic, strong) UIView        *volumeView;
+
 
 
 @end
@@ -34,10 +36,22 @@ static int const kShowBarTime = 5;
     if (self = [super initWithFrame:frame])
     {
         [self setupSubview];
-        [self addGestureRecognizer];
         [self setupVolume];
+        [self setupVolumeView];
     }
     return self;
+}
+
+- (void)setupVolumeView
+{
+    _volumeView = [[UIView alloc]initWithFrame:self.bounds];//[[UIView alloc]initWithFrame:CGRectMake(self.frame.size.width / 2.0, 20, self.frame.size.width / 2.0, self.frame.size.height - 60)];
+    _volumeView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.5];
+    [self addSubview:_volumeView];
+    MPVolumeView *volumeView = [[MPVolumeView alloc] init] ;
+    [volumeView setShowsVolumeSlider:NO];
+    [volumeView sizeToFit];
+    volumeView.frame = CGRectMake(500, 0, 20, 20);
+    [self addSubview:volumeView];
 }
 
 - (void)setUrlString:(NSString *)urlString
@@ -50,6 +64,9 @@ static int const kShowBarTime = 5;
     //将navigationBar和tabBar挪到最上层
     [self bringSubviewToFront:self.playerNavigationBar];
     [self bringSubviewToFront:self.playerTabBar];
+    [self bringSubviewToFront:self.volumeView];
+    
+    [self addGestureRecognizer];
 }
 
 #pragma makr 初始化子控件
@@ -258,7 +275,7 @@ static int const kShowBarTime = 5;
     
     //调节音量
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
-    [self addGestureRecognizer:pan];
+    [_volumeView addGestureRecognizer:pan];
     
     //调节亮度
     
@@ -296,12 +313,12 @@ static int const kShowBarTime = 5;
 #pragma mark 拖动手势
 - (void)panAction:(UIPanGestureRecognizer *)pan
 {
-    CGPoint point = [pan locationInView:self];
-    
+    CGPoint point = [pan locationInView:self.volumeView];
+    [self adjustVolume:point.y];
     //调节音量
     if (point.x > self.frame.size.width / 2.0) 
     {
-        [self adjustVolume:point.y];
+        
     } else
     {
         //调节亮度

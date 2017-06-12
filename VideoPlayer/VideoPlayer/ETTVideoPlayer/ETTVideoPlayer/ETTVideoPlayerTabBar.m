@@ -7,6 +7,7 @@
 //
 
 #import "ETTVideoPlayerTabBar.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define kWidthScale (frame.size.width / 414.0)
 #define kHeightScale (frame.size.height / 736.0)
