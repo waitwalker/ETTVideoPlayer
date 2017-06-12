@@ -7,6 +7,7 @@
 //
 
 #import "ETTVideoPlayerNavigationBar.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 
 @interface ETTVideoPlayerNavigationBar ()
@@ -23,6 +24,12 @@
     if (self = [super initWithFrame:frame]) 
     {   
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
+        
+        MPVolumeView *volumeView = [[MPVolumeView alloc] init] ;
+        [volumeView setShowsVolumeSlider:NO];
+        [volumeView sizeToFit];
+        volumeView.frame = CGRectMake(200, 0, 20, 20);
+        [self addSubview:volumeView];
         [self setupSubviewsNavigationBar];
     }
     return self;

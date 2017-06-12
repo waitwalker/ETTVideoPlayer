@@ -47,11 +47,6 @@ static int const kShowBarTime = 5;
     _volumeView = [[UIView alloc]initWithFrame:self.bounds];//[[UIView alloc]initWithFrame:CGRectMake(self.frame.size.width / 2.0, 20, self.frame.size.width / 2.0, self.frame.size.height - 60)];
     _volumeView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.5];
     [self addSubview:_volumeView];
-    MPVolumeView *volumeView = [[MPVolumeView alloc] init] ;
-    [volumeView setShowsVolumeSlider:NO];
-    [volumeView sizeToFit];
-    volumeView.frame = CGRectMake(500, 0, 20, 20);
-    [self addSubview:volumeView];
 }
 
 - (void)setUrlString:(NSString *)urlString
@@ -329,8 +324,22 @@ static int const kShowBarTime = 5;
 #pragma mark 调节音量
 - (void)adjustVolume:(CGFloat)value
 {
-    self.volumeViewSlider.value -= value/ 1000;
-    NSLog(@"%.3f",self.volumeViewSlider.value);
+    NSLog(@"value y坐标值: %f",value);
+    NSLog(@"%.3f",value/100.0);
+    
+    NSLog(@"原始value %f",self.volumeViewSlider.value);
+    
+    CGFloat secon = self.volumeViewSlider.value - value/10000.0;
+    
+    NSLog(@"减了:%f",secon);
+    
+    self.volumeViewSlider.value = self.volumeViewSlider.value - value/1000.0;
+    
+    
+    NSLog(@"%f",self.volumeViewSlider.value);
+    
+    self.volumeViewSlider.value -= value/1000.0;
+    NSLog(@"%f",self.volumeViewSlider.value);
 }
 
 #pragma mark 调节亮度
