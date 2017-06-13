@@ -42,13 +42,15 @@ static int const kShowBarTime = 5;
     return self;
 }
 
+#pragma mark 初始化声音调控蒙版 暂时先去掉
 - (void)setupVolumeView
 {
     _volumeView = [[UIView alloc]initWithFrame:self.bounds];//[[UIView alloc]initWithFrame:CGRectMake(self.frame.size.width / 2.0, 20, self.frame.size.width / 2.0, self.frame.size.height - 60)];
     _volumeView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.5];
-    [self addSubview:_volumeView];
+    //[self addSubview:_volumeView];
 }
 
+#pragma mark setter播放路径
 - (void)setUrlString:(NSString *)urlString
 {
     _urlString = urlString;
@@ -61,7 +63,7 @@ static int const kShowBarTime = 5;
     [self bringSubviewToFront:self.playerTabBar];
     [self bringSubviewToFront:self.volumeView];
     
-    [self addGestureRecognizer];
+    //[self addGestureRecognizer];
 }
 
 #pragma makr 初始化子控件

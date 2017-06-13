@@ -13,9 +13,13 @@
 @interface ETTVideoPlayerNavigationBar ()
 
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) MPVolumeView *volumeView;
 
 
 @end
+
+static CGFloat const kVolumeViewWidthHeight = 30.0;
+static CGFloat const kWidthMargin = 10.0;
 
 @implementation ETTVideoPlayerNavigationBar
 
@@ -25,11 +29,6 @@
     {   
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
         
-        MPVolumeView *volumeView = [[MPVolumeView alloc] init] ;
-        [volumeView setShowsVolumeSlider:NO];
-        [volumeView sizeToFit];
-        volumeView.frame = CGRectMake(200, 0, 20, 20);
-        [self addSubview:volumeView];
         [self setupSubviewsNavigationBar];
     }
     return self;
@@ -52,12 +51,25 @@
     [self addSubview:backButton];
     self.backButton = backButton;
     
+    
+    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+    [volumeView setShowsVolumeSlider:NO];
+    [self addSubview:volumeView];
+    self.volumeView = volumeView;
+    
 }
 
 #pragma mark 布局子控件
 - (void)layoutSubviewsNavigationBar
 {
     self.backButton.frame = CGRectMake(20, 0, 100, self.bounds.size.height);
+    
+    //airplay 
+    CGFloat volumeWidth = kVolumeViewWidthHeight;
+    CGFloat volumeHeight = kVolumeViewWidthHeight;
+    CGFloat volumeX = self.frame.size.width - volumeWidth - 2 * kWidthMargin;
+    CGFloat volumeY = (self.frame.size.height - kVolumeViewWidthHeight ) / 2.0;
+    self.volumeView.frame = CGRectMake(volumeX, volumeY, volumeWidth, volumeHeight);
 }
 
 #pragma mark 返回按钮的点击事件回调
