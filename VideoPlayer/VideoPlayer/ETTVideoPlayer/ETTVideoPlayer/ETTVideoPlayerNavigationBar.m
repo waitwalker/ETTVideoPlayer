@@ -51,7 +51,7 @@ static CGFloat const kWidthMargin = 10.0;
     [self addSubview:backButton];
     self.backButton = backButton;
     
-    
+    //airplay
     MPVolumeView *volumeView = [[MPVolumeView alloc] init];
     [volumeView setShowsVolumeSlider:NO];
     [self addSubview:volumeView];
